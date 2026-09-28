@@ -39,6 +39,12 @@ type Arg1 = Arg | [Arg];
 type Arg2 = [Arg, Arg];
 
 /**
+ * A two argument transform signature; the
+ * second argument is optional.
+ */
+type Arg2Opt = Arg | [Arg, Arg?];
+
+/**
  * A three argument transform signature; the
  * second and third arguments are optional.
  */
@@ -174,6 +180,143 @@ export interface GeoJSON {
    * This transform requires the DuckDB `spatial` extension.
    */
   geojson: Arg1;
+}
+
+/** An abs numeric transform. */
+export interface Abs {
+  /**
+   * Compute the absolute value of a number.
+   */
+  abs: Arg1;
+}
+
+/** A ceil numeric transform. */
+export interface Ceil {
+  /**
+   * Round a number up to the nearest integer.
+   */
+  ceil: Arg1;
+}
+
+/** An exp numeric transform. */
+export interface Exp {
+  /**
+   * Compute the exponential function `e ** x`.
+   */
+  exp: Arg1;
+}
+
+/** A floor numeric transform. */
+export interface Floor {
+  /**
+   * Round a number down to the nearest integer.
+   */
+  floor: Arg1;
+}
+
+/** An ln numeric transform. */
+export interface Ln {
+  /**
+   * Compute the natural logarithm of a number.
+   */
+  ln: Arg1;
+}
+
+/** A log numeric transform. */
+export interface Log {
+  /**
+   * Compute the base 10 logarithm of a number.
+   */
+  log: Arg1;
+}
+
+/** A round numeric transform. */
+export interface Round {
+  /**
+   * Round a number to the given decimal places (second argument, default
+   * `0`). Negative values round to tens, hundreds, etc.
+   */
+  round: Arg2Opt;
+}
+
+/** A sign numeric transform. */
+export interface Sign {
+  /**
+   * Compute the sign of a number (-1, 0, or 1).
+   */
+  sign: Arg1;
+}
+
+/** A sqrt numeric transform. */
+export interface Sqrt {
+  /**
+   * Compute the square root of a number.
+   */
+  sqrt: Arg1;
+}
+
+/** A trunc numeric transform. */
+export interface Trunc {
+  /**
+   * Truncate a number toward zero.
+   */
+  trunc: Arg1;
+}
+
+/** An add arithmetic transform. */
+export interface Add {
+  /**
+   * Add two numbers (`a + b`).
+   */
+  add: Arg2;
+}
+
+/** A sub arithmetic transform. */
+export interface Sub {
+  /**
+   * Subtract the second number from the first (`a - b`).
+   */
+  sub: Arg2;
+}
+
+/** A mul arithmetic transform. */
+export interface Mul {
+  /**
+   * Multiply two numbers (`a * b`).
+   */
+  mul: Arg2;
+}
+
+/** A div arithmetic transform. */
+export interface Div {
+  /**
+   * Divide the first number by the second (`a / b`).
+   */
+  div: Arg2;
+}
+
+/** An idiv arithmetic transform. */
+export interface Idiv {
+  /**
+   * Integer-divide the first number by the second (`a // b`).
+   */
+  idiv: Arg2;
+}
+
+/** A mod arithmetic transform. */
+export interface Mod {
+  /**
+   * Compute the remainder of dividing the first number by the second (`a % b`).
+   */
+  mod: Arg2;
+}
+
+/** A pow arithmetic transform. */
+export interface Pow {
+  /**
+   * Raise the first number to the power of the second (`a ** b`).
+   */
+  pow: Arg2;
 }
 
 /** An argmax aggregate transform. */
@@ -451,6 +594,29 @@ export type ColumnTransform =
   | CentroidY
   | GeoJSON;
 
+/** A numeric transform that maps a number to another. */
+export type NumericTransform =
+  | Abs
+  | Ceil
+  | Exp
+  | Floor
+  | Ln
+  | Log
+  | Round
+  | Sign
+  | Sqrt
+  | Trunc;
+
+/** An arithmetic transform that combines two numbers. */
+export type ArithmeticTransform =
+  | Add
+  | Sub
+  | Mul
+  | Div
+  | Idiv
+  | Mod
+  | Pow;
+
 /** An aggregate transform that combines multiple values. */
 export type AggregateTransform =
   | Argmax
@@ -493,6 +659,8 @@ export type WindowTransform =
 /** A data transform. */
 export type Transform =
   | ColumnTransform
+  | NumericTransform
+  | ArithmeticTransform
   | AggregateTransform
   | WindowTransform
   ;

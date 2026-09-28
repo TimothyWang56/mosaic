@@ -61,6 +61,15 @@ describe('astToPython transforms', () => {
     );
   });
 
+  it('emits numeric transforms as calls', () => {
+    expect(astToPython(lineY({ abs: { sum: { sql: 'a' } } })))
+      .toContain('y=vg.abs(vg.sum(vg.sql("a")))');
+    expect(astToPython(lineY({ round: [{ avg: 'a' }, 2] })))
+      .toContain('y=vg.round(vg.avg("a"), 2)');
+    expect(astToPython(lineY({ div: [{ sum: 'a' }, { sum: 'b' }] })))
+      .toContain('y=vg.div(vg.sum("a"), vg.sum("b"))');
+  });
+
   it('emits nested transforms from a parsed spec', () => {
     const spec = parseSpec({
       plot: [{

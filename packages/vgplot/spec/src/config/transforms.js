@@ -51,6 +51,23 @@ export function transformNames(overrides = []) {
     'seconds',
     'milliseconds',
     'microseconds',
+    'abs',
+    'ceil',
+    'exp',
+    'floor',
+    'ln',
+    'log',
+    'round',
+    'sign',
+    'sqrt',
+    'trunc',
+    'add',
+    'sub',
+    'mul',
+    'div',
+    'idiv',
+    'mod',
+    'pow',
     ...overrides
   ]);
 }

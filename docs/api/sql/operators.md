@@ -62,6 +62,48 @@ Returns an expression testing if expression _a_ is less than or equal to express
 
 Returns an expression testing if expression _a_ is greater than or equal to expression _b_.
 
+## add
+
+`add(a, b)`
+
+Returns an expression that adds expressions _a_ and _b_ (`a + b`).
+
+## sub
+
+`sub(a, b)`
+
+Returns an expression that subtracts expression _b_ from expression _a_ (`a - b`).
+
+## mul
+
+`mul(a, b)`
+
+Returns an expression that multiplies expressions _a_ and _b_ (`a * b`).
+
+## div
+
+`div(a, b)`
+
+Returns an expression that divides expression _a_ by expression _b_ (`a / b`).
+
+## idiv
+
+`idiv(a, b)`
+
+Returns an expression that integer-divides expression _a_ by expression _b_ (`a // b`).
+
+## mod
+
+`mod(a, b)`
+
+Returns an expression for the remainder of dividing expression _a_ by expression _b_ (`a % b`).
+
+## pow
+
+`pow(a, b)`
+
+Returns an expression that raises expression _a_ to the power of expression _b_ (`a ** b`).
+
 ## isNull
 
 `isNull(expression)`
