@@ -143,9 +143,17 @@ function generateAttributes(defs) {
 
 // Python parameter names for transforms that take more than a single column.
 const TRANSFORM_ARGS = {
+  add: ['a', 'b'],
+  sub: ['a', 'b'],
+  mul: ['a', 'b'],
+  div: ['a', 'b'],
+  idiv: ['a', 'b'],
+  mod: ['a', 'b'],
+  pow: ['a', 'b'],
   argmax: ['col', 'by'],
   argmin: ['col', 'by'],
   quantile: ['col', 'p'],
+  round: ['col', 'places'],
   lag: ['col', 'offset', 'default'],
   lead: ['col', 'offset', 'default'],
   nth_value: ['col', 'offset'],
@@ -166,7 +174,7 @@ function argRange(sch) {
 function generateEncodings(defs) {
   const seen = new Set();
   const transforms = [];
-  for (const kind of ['ColumnTransform', 'AggregateTransform', 'WindowTransform']) {
+  for (const kind of ['ColumnTransform', 'NumericTransform', 'ArithmeticTransform', 'AggregateTransform', 'WindowTransform']) {
     for (const { $ref } of defs[kind].anyOf) {
       const name = $ref.split('/').pop();
       const def = defs[name];

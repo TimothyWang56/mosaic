@@ -16,6 +16,7 @@ Mosaic API Reference.
 - [Expressions](/api/sql/expressions)
 - [Operators](/api/sql/operators)
 - [Date Functions](/api/sql/date-functions)
+- [Numeric Functions](/api/sql/numeric-functions)
 - [Aggregate Functions](/api/sql/aggregate-functions)
 - [Window Functions](/api/sql/window-functions)
 - [Data Loading](/api/sql/data-loading)

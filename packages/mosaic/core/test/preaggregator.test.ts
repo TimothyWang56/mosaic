@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { CreateQuery, ExprNode, FilterExpr } from '@uwdata/mosaic-sql';
-import { Query, add, argmax, argmin, avg, corr, count, covarPop, covariance, cte, desc, eq, filterPushdown, geomean, gt, literal, loadObjects, max, min, mul, neq, product, regrAvgX, regrAvgY, regrCount, regrIntercept, regrR2, regrSXX, regrSXY, regrSYY, regrSlope, sql, stddev, stddevPop, sum, upper, varPop, variance } from '@uwdata/mosaic-sql';
+import { Query, abs, add, argmax, argmin, avg, corr, count, covarPop, covariance, cte, desc, eq, filterPushdown, geomean, gt, literal, loadObjects, max, min, mul, neq, product, regrAvgX, regrAvgY, regrCount, regrIntercept, regrR2, regrSXX, regrSXY, regrSYY, regrSlope, sql, stddev, stddevPop, sum, upper, varPop, variance } from '@uwdata/mosaic-sql';
 import { clausePoint, Coordinator, Param, Selection, SelectionClause } from '../src/index.js';
 import type { PreAggregateInfo } from '../src/preagg/PreAggregator.js';
 import { preaggColumns } from '../src/preagg/preagg-columns.js';
@@ -176,6 +176,11 @@ describe('PreAggregator', () => {
 
   it('supports multi-aggregate expressions', async () => {
     expect(await run(add(sum('x'), product('x')))).toStrictEqual([19, true]);
+  });
+
+  it('supports scalar functions of aggregates', async () => {
+    expect(await run(abs(sum(mul('x', -1))))).toStrictEqual([7, true]);
+    expect(await run(sql`abs(sum(-x))`)).toStrictEqual([7, false]);
   });
 
   it('supports aggregate filter clause', async () => {

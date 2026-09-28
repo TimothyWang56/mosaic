@@ -167,6 +167,143 @@ export interface GeoJSON {
   geojson: Unary<TransformField>;
 }
 
+/** An abs numeric transform. */
+export interface Abs {
+  /**
+   * Compute the absolute value of a number.
+   */
+  abs: Unary<TransformField>;
+}
+
+/** A ceil numeric transform. */
+export interface Ceil {
+  /**
+   * Round a number up to the nearest integer.
+   */
+  ceil: Unary<TransformField>;
+}
+
+/** An exp numeric transform. */
+export interface Exp {
+  /**
+   * Compute the exponential function `e ** x`.
+   */
+  exp: Unary<TransformField>;
+}
+
+/** A floor numeric transform. */
+export interface Floor {
+  /**
+   * Round a number down to the nearest integer.
+   */
+  floor: Unary<TransformField>;
+}
+
+/** An ln numeric transform. */
+export interface Ln {
+  /**
+   * Compute the natural logarithm of a number.
+   */
+  ln: Unary<TransformField>;
+}
+
+/** A log numeric transform. */
+export interface Log {
+  /**
+   * Compute the base 10 logarithm of a number.
+   */
+  log: Unary<TransformField>;
+}
+
+/** A round numeric transform. */
+export interface Round {
+  /**
+   * Round a number to the given decimal places (second argument, default
+   * `0`). Negative values round to tens, hundreds, etc.
+   */
+  round: TransformField | [expr: TransformField, decimals?: TransformField | number];
+}
+
+/** A sign numeric transform. */
+export interface Sign {
+  /**
+   * Compute the sign of a number (-1, 0, or 1).
+   */
+  sign: Unary<TransformField>;
+}
+
+/** A sqrt numeric transform. */
+export interface Sqrt {
+  /**
+   * Compute the square root of a number.
+   */
+  sqrt: Unary<TransformField>;
+}
+
+/** A trunc numeric transform. */
+export interface Trunc {
+  /**
+   * Truncate a number toward zero.
+   */
+  trunc: Unary<TransformField>;
+}
+
+/** An add arithmetic transform. */
+export interface Add {
+  /**
+   * Add two numbers (`a + b`).
+   */
+  add: Binary<TransformField | number>;
+}
+
+/** A sub arithmetic transform. */
+export interface Sub {
+  /**
+   * Subtract the second number from the first (`a - b`).
+   */
+  sub: Binary<TransformField | number>;
+}
+
+/** A mul arithmetic transform. */
+export interface Mul {
+  /**
+   * Multiply two numbers (`a * b`).
+   */
+  mul: Binary<TransformField | number>;
+}
+
+/** A div arithmetic transform. */
+export interface Div {
+  /**
+   * Divide the first number by the second (`a / b`).
+   */
+  div: Binary<TransformField | number>;
+}
+
+/** An idiv arithmetic transform. */
+export interface Idiv {
+  /**
+   * Integer-divide the first number by the second (`a // b`).
+   */
+  idiv: Binary<TransformField | number>;
+}
+
+/** A mod arithmetic transform. */
+export interface Mod {
+  /**
+   * Compute the remainder of dividing the first number by the second (`a % b`).
+   */
+  mod: Binary<TransformField | number>;
+}
+
+/** A pow arithmetic transform. */
+export interface Pow {
+  /**
+   * Raise the first number to the power of the second (`a ** b`).
+   */
+  pow: Binary<TransformField | number>;
+}
+
 /** An argmax aggregate transform. */
 export interface Argmax extends AggregateOptions, WindowOptions {
   /**
@@ -442,6 +579,29 @@ export type ColumnTransform =
   | CentroidY
   | GeoJSON;
 
+/** A numeric transform that maps a number to another. */
+export type NumericTransform =
+  | Abs
+  | Ceil
+  | Exp
+  | Floor
+  | Ln
+  | Log
+  | Round
+  | Sign
+  | Sqrt
+  | Trunc;
+
+/** An arithmetic transform that combines two numbers. */
+export type ArithmeticTransform =
+  | Add
+  | Sub
+  | Mul
+  | Div
+  | Idiv
+  | Mod
+  | Pow;
+
 /** An aggregate transform that combines multiple values. */
 export type AggregateTransform =
   | Argmax
@@ -484,6 +644,8 @@ export type WindowTransform =
 /** A data transform. */
 export type Transform =
   | ColumnTransform
+  | NumericTransform
+  | ArithmeticTransform
   | AggregateTransform
   | WindowTransform
   ;

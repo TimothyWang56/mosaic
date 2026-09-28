@@ -59,6 +59,8 @@ export {
   frameGroups, frameRange, frameRows,
   dateDay, dateMonth, dateMonthDay,
   interval, years, months, days, hours, minutes, seconds, milliseconds, microseconds,
+  abs, ceil, exp, floor, ln, log, round, sign, sqrt, trunc,
+  add, sub, mul, div, idiv, mod, pow,
   and, or, not, eq, neq, gt, gte, lt, lte,
   isBetween, isNotBetween,
   isDistinct, isNotDistinct,

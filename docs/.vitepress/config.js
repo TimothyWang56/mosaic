@@ -234,6 +234,7 @@ export default defineConfig({
             { text: 'Expressions', link: '/api/sql/expressions' },
             { text: 'Operators', link: '/api/sql/operators' },
             { text: 'Date Functions', link: '/api/sql/date-functions' },
+            { text: 'Numeric Functions', link: '/api/sql/numeric-functions' },
             { text: 'Aggregate Functions', link: '/api/sql/aggregate-functions' },
             { text: 'Window Functions', link: '/api/sql/window-functions' },
             { text: 'Data Loading', link: '/api/sql/data-loading' },

@@ -16,6 +16,16 @@ def _transform(
     return {name: value, **options}
 
 
+def abs(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Compute the absolute value of a number."""
+    return _transform("abs", (col,), options)
+
+
+def add(a: TransformArg, b: TransformArg, **options: Any) -> dict[str, Any]:
+    """Add two numbers (`a + b`)."""
+    return _transform("add", (a, b), options)
+
+
 def argmax(col: TransformArg, by: TransformArg, **options: Any) -> dict[str, Any]:
     """Find a value of the first column that maximizes the second column."""
     return _transform("argmax", (col, by), options)
@@ -34,6 +44,11 @@ def avg(col: TransformArg, **options: Any) -> dict[str, Any]:
 def bin(col: TransformArg, **options: Any) -> dict[str, Any]:
     """Bin a continuous variable into discrete intervals."""
     return _transform("bin", (col,), options)
+
+
+def ceil(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Round a number up to the nearest integer."""
+    return _transform("ceil", (col,), options)
 
 
 def centroid(col: TransformArg, **options: Any) -> dict[str, Any]:
@@ -86,6 +101,16 @@ def dense_rank(**options: Any) -> dict[str, Any]:
     return {"dense_rank": None, **options}
 
 
+def div(a: TransformArg, b: TransformArg, **options: Any) -> dict[str, Any]:
+    """Divide the first number by the second (`a / b`)."""
+    return _transform("div", (a, b), options)
+
+
+def exp(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Compute the exponential function `e ** x`."""
+    return _transform("exp", (col,), options)
+
+
 def first(col: TransformArg, **options: Any) -> dict[str, Any]:
     """Return the first column value found in an aggregation group."""
     return _transform("first", (col,), options)
@@ -96,9 +121,19 @@ def first_value(col: TransformArg, **options: Any) -> dict[str, Any]:
     return _transform("first_value", (col,), options)
 
 
+def floor(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Round a number down to the nearest integer."""
+    return _transform("floor", (col,), options)
+
+
 def geojson(col: TransformArg, **options: Any) -> dict[str, Any]:
     """Compute a GeoJSON-formatted string from geometry-typed data."""
     return _transform("geojson", (col,), options)
+
+
+def idiv(a: TransformArg, b: TransformArg, **options: Any) -> dict[str, Any]:
+    """Integer-divide the first number by the second (`a // b`)."""
+    return _transform("idiv", (a, b), options)
 
 
 def lag(
@@ -131,6 +166,16 @@ def lead(
     return _transform("lead", (col, offset, default), options)
 
 
+def ln(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Compute the natural logarithm of a number."""
+    return _transform("ln", (col,), options)
+
+
+def log(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Compute the base 10 logarithm of a number."""
+    return _transform("log", (col,), options)
+
+
 def max(col: TransformArg, **options: Any) -> dict[str, Any]:
     """Compute the maximum value of the given column."""
     return _transform("max", (col,), options)
@@ -146,9 +191,19 @@ def min(col: TransformArg, **options: Any) -> dict[str, Any]:
     return _transform("min", (col,), options)
 
 
+def mod(a: TransformArg, b: TransformArg, **options: Any) -> dict[str, Any]:
+    """Compute the remainder of dividing the first number by the second (`a % b`)."""
+    return _transform("mod", (a, b), options)
+
+
 def mode(col: TransformArg, **options: Any) -> dict[str, Any]:
     """Compute the mode value of the given column."""
     return _transform("mode", (col,), options)
+
+
+def mul(a: TransformArg, b: TransformArg, **options: Any) -> dict[str, Any]:
+    """Multiply two numbers (`a * b`)."""
+    return _transform("mul", (a, b), options)
 
 
 def nth_value(
@@ -168,6 +223,11 @@ def percent_rank(**options: Any) -> dict[str, Any]:
     return {"percent_rank": None, **options}
 
 
+def pow(a: TransformArg, b: TransformArg, **options: Any) -> dict[str, Any]:
+    """Raise the first number to the power of the second (`a ** b`)."""
+    return _transform("pow", (a, b), options)
+
+
 def product(col: TransformArg, **options: Any) -> dict[str, Any]:
     """Compute the product of the given column."""
     return _transform("product", (col,), options)
@@ -183,9 +243,26 @@ def rank(**options: Any) -> dict[str, Any]:
     return {"rank": None, **options}
 
 
+def round(
+    col: TransformArg, places: TransformArg | UNSET = UNSET, **options: Any
+) -> dict[str, Any]:
+    """Round a number to the given decimal places (second argument, default `0`)."""
+    return _transform("round", (col, places), options)
+
+
 def row_number(**options: Any) -> dict[str, Any]:
     """Compute the 1-based row number over an ordered window partition."""
     return {"row_number": None, **options}
+
+
+def sign(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Compute the sign of a number (-1, 0, or 1)."""
+    return _transform("sign", (col,), options)
+
+
+def sqrt(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Compute the square root of a number."""
+    return _transform("sqrt", (col,), options)
 
 
 def stddev(col: TransformArg, **options: Any) -> dict[str, Any]:
@@ -198,9 +275,19 @@ def stddev_pop(col: TransformArg, **options: Any) -> dict[str, Any]:
     return _transform("stddevPop", (col,), options)
 
 
+def sub(a: TransformArg, b: TransformArg, **options: Any) -> dict[str, Any]:
+    """Subtract the second number from the first (`a - b`)."""
+    return _transform("sub", (a, b), options)
+
+
 def sum(col: TransformArg, **options: Any) -> dict[str, Any]:
     """Compute the sum of the given column."""
     return _transform("sum", (col,), options)
+
+
+def trunc(col: TransformArg, **options: Any) -> dict[str, Any]:
+    """Truncate a number toward zero."""
+    return _transform("trunc", (col,), options)
 
 
 def variance(col: TransformArg, **options: Any) -> dict[str, Any]:
@@ -214,10 +301,13 @@ def var_pop(col: TransformArg, **options: Any) -> dict[str, Any]:
 
 
 __all__ = [
+    "abs",
+    "add",
     "argmax",
     "argmin",
     "avg",
     "bin",
+    "ceil",
     "centroid",
     "centroid_x",
     "centroid_y",
@@ -228,27 +318,41 @@ __all__ = [
     "date_month",
     "date_month_day",
     "dense_rank",
+    "div",
+    "exp",
     "first",
     "first_value",
+    "floor",
     "geojson",
+    "idiv",
     "lag",
     "last",
     "last_value",
     "lead",
+    "ln",
+    "log",
     "max",
     "median",
     "min",
+    "mod",
     "mode",
+    "mul",
     "nth_value",
     "ntile",
     "percent_rank",
+    "pow",
     "product",
     "quantile",
     "rank",
+    "round",
     "row_number",
+    "sign",
+    "sqrt",
     "stddev",
     "stddev_pop",
+    "sub",
     "sum",
+    "trunc",
     "var_pop",
     "variance",
 ]
